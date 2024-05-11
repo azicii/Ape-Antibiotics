@@ -1095,7 +1095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 179.11252, y: 31.02401}
+  m_AnchoredPosition: {x: 179.11255, y: 31.023987}
   m_SizeDelta: {x: 356.2311, y: 62.048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &505844732
@@ -2576,7 +2576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5121421b2c28f9d4fa6ddda1796d23a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNumber: 0
 --- !u!33 &1303464122
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5810,6 +5809,7 @@ GameObject:
   - component: {fileID: 8330503063304616272}
   - component: {fileID: 8330503063304616273}
   - component: {fileID: 8330503063304616271}
+  - component: {fileID: 8330503063304616261}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5817,6 +5817,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8330503063304616261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330503063304616260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a472010183bab4a8ca04413cfa156e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackAmount: 200
+  crackedSheildKnockbackMultiplier: 20
 --- !u!114 &8330503063304616262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5899,6 +5913,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jumpKey: 32
+  isGrounded: 0
   jumpForce: 15
 --- !u!114 &8330503063304616266
 MonoBehaviour:
@@ -5960,6 +5975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldInCanvas: {fileID: 505844730}
   shieldHealth: 100
+  increasedKnockback: 0
   inflictDamageKey: 116
 --- !u!114 &8330503063304616269
 MonoBehaviour:
@@ -5992,11 +6008,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 8330503062741524302}
   attackRange: 3.2
-  enemyLayers:
+  affectedLayers:
     serializedVersion: 2
-    m_Bits: 128
-  FireRate: 8
-  damage: 61.67
+    m_Bits: 0
+  attackCooldown: 1
+  minDamage: 10
+  maxDamage: 30
+  chargeUpTime: 0
+  chargeHoldTime: 0
+  attackKnockbackForceMultiplier: 0
 --- !u!114 &8330503063304616271
 MonoBehaviour:
   m_ObjectHideFlags: 0

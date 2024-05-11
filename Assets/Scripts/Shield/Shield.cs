@@ -11,6 +11,7 @@ public class Shield : MonoBehaviour
     public float shieldHealth;
 
     public bool cracked => shieldHealth <= 0;
+    public bool increasedKnockback;
 
     [Header("Keybinds")]
     [SerializeField] KeyCode inflictDamageKey = KeyCode.T;
@@ -18,6 +19,7 @@ public class Shield : MonoBehaviour
     void Start()
     {
         shield = shieldInCanvas.GetComponentInChildren<ShieldHealth>();
+        Knock_back.Instance.Test();
     }
 
     void Update()
@@ -36,9 +38,15 @@ public class Shield : MonoBehaviour
             shieldHealth -= damage;
         }
 
-        if (cracked)
+        if (increasedKnockback)
         {
-            Debug.Log("Shield Cracked");
+
+        }
+
+        if (cracked && !increasedKnockback)
+        {
+            increasedKnockback = true;
+            Debug.Log("Shield Cracked"); // TODO: sound/visual given to player to indicate they will recieve greater knockback now
         }
     }
 

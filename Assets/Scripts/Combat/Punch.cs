@@ -135,13 +135,8 @@ public class Punch : MonoBehaviour
                 enemyHealth.TakeDamage(damageBasedOnCharge);
             }
 
-            // Knock them back - Now uses the IKnockable interface
-            if (enemy.gameObject.TryGetComponent<IKnockable>(out var knockable))
-            {
-                // Knocks the enemy based on multiple factors
-                float finalKnockbackValue = attackKnockbackForceMultiplier * damageBasedOnCharge;
-                knockable.KnockBack(attackPoint.position, finalKnockbackValue);
-            }
+            float finalKnockbackValue = attackKnockbackForceMultiplier * damageBasedOnCharge;
+            Knock_back.Instance.ApplyKnockback(enemy, attackPoint.position, finalKnockbackValue);
         }
 
         StartCoroutine(PunchCoolDown());
