@@ -8,7 +8,7 @@ public class Dash : MonoBehaviour
     public Transform orientation;
     public Transform playerCam;
     private Rigidbody rb;
-    private PlayerMovement pm;
+    private PlayerAgent pm;
 
     [Header("Dashing")]
     public float dashForce;
@@ -26,7 +26,7 @@ public class Dash : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        pm = GetComponent<PlayerMovement>();
+        pm = GetComponent<PlayerAgent>();
     }
 
     private void Update()

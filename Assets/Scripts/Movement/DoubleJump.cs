@@ -11,7 +11,7 @@ public class DoubleJump : MonoBehaviour
     bool jumpRequest;
     public bool isGrounded;
 
-    PlayerMovement pm;
+    PlayerAgent pm;
     Rigidbody rb;
     Grappling grapple;
 
@@ -21,7 +21,7 @@ public class DoubleJump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        pm = GetComponent<PlayerMovement>();
+        pm = GetComponent<PlayerAgent>();
 
         groundCheck.gameObject.SetActive(false);
     }

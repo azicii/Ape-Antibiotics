@@ -5,7 +5,7 @@ using UnityEngine;
 public class Grappling : MonoBehaviour
 {
     [Header("References")]
-    private PlayerMovement pm;
+    private PlayerAgent pm;
     private DoubleJump dj;
     private Rigidbody rb;
     public Transform cam;
@@ -42,7 +42,7 @@ public class Grappling : MonoBehaviour
 
     void Start()
     {
-        pm = GetComponent<PlayerMovement>();
+        pm = GetComponent<PlayerAgent>();
         dj = GetComponent<DoubleJump>();
         rb = GetComponent<Rigidbody>();
         grappleGun.SetActive(false);

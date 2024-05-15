@@ -24,7 +24,7 @@ public class GroundPound : MonoBehaviour
 
     List<Collider> hitTargets;
 
-    PlayerMovement pm;
+    PlayerAgent pm;
     Rigidbody rb;
 
     //make the ground pound similar to ultrakill
@@ -32,7 +32,7 @@ public class GroundPound : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        pm = GetComponent<PlayerMovement>();
+        pm = GetComponent<PlayerAgent>();
         knockb = GetComponent<Knockback>();
     }
 
