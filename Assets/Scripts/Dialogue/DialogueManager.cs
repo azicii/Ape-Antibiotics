@@ -7,20 +7,27 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Params")]
+    [SerializeField] private float typingSpeed = 0.04f;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI displayNameText;
+    [SerializeField] private Animator portraitAnimator;
 
     private Story currentStory;
 
+    private Coroutine displayLineCoroutine;
+
     private bool dialogueIsPlaying;
+    private bool canContinueToNextLine = false;
 
     private static DialogueManager instance;
 
     private const string SPEAKER_TAG = "speaker";
-
     private const string PORTRAIT_TAG = "portrait";
+    private const string QUEST_TAG = "quest";
 
     private void Awake()
     {
@@ -49,9 +56,15 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        //change to character interact, or get rid of if it becomes irrelevant
+        /*if (canContinueToNextLine == true && Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log("Continuing Story");
+            ContinueStory();
+        }*/
+
+        if (canContinueToNextLine == true )
+        {
             ContinueStory();
         }
     }
@@ -79,7 +92,11 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             // set text for the current dialogue line
-            dialogueText.text = currentStory.Continue();
+            if(displayLineCoroutine != null)
+            {
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
 
             // handle tags
             HandleTags(currentStory.currentTags);
@@ -88,6 +105,32 @@ public class DialogueManager : MonoBehaviour
         {
             StartCoroutine(ExitDialogueMode());
         }
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        dialogueText.text = "";
+        canContinueToNextLine = false;
+
+        //if text has items, you can hide them here
+
+        foreach(char letter in line.ToCharArray())
+        {
+            /*if (Input.GetKey(KeyCode.I)) //change to character interact, or get rid of if it becomes irrelevant
+            {
+                dialogueText.text = line;
+                break;
+            }*/
+
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        //if text has items, you can unhide them here
+
+
+        yield return new WaitForSeconds(1.0f);
+        canContinueToNextLine = true;
     }
 
     private void HandleTags(List<string> currentTags)
@@ -104,12 +147,17 @@ public class DialogueManager : MonoBehaviour
 
             switch (tagKey)
             {
+                //add tags here
                 case SPEAKER_TAG:
                     displayNameText.text = tagValue;
-                    Debug.Log("speaker = " + tagValue);
+                    //Debug.Log("speaker = " + tagValue);
                     break;
                 case PORTRAIT_TAG:
-                    Debug.Log("portrait = " + tagValue);
+                    portraitAnimator.Play(tagValue);
+                    //Debug.Log("portrait = " + tagValue);
+                    break;
+                case QUEST_TAG:
+                    Debug.Log("Quest = " + tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
