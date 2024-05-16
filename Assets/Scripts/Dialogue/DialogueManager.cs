@@ -149,7 +149,7 @@ public class DialogueManager : MonoBehaviour
             {
                 //add tags here
                 case SPEAKER_TAG:
-                    displayNameText.text = tagValue;
+                    displayNameText.text = tagValue.ToUpper();
                     //Debug.Log("speaker = " + tagValue);
                     break;
                 case PORTRAIT_TAG:
