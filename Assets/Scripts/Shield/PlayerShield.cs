@@ -48,7 +48,7 @@ public class PlayerShield : MonoBehaviour, IDamageable
     private void Update()
     {
         // Debugging
-        SelfInflictDamage();
+        //SelfInflictDamage();
 
         // Count up the shield recharge timer
         if (timeSinceDamage < timeBeforeRecharge)
@@ -108,11 +108,11 @@ public class PlayerShield : MonoBehaviour, IDamageable
         ShieldChangedEvent?.Invoke(currentShieldHealth, maxShieldHealth);
     }
 
-    private void SelfInflictDamage()
-    {
-        if (Input.GetKeyDown(inflictDamageKey))
-        {
-            TakeDamage(10f);
-        }
-    }
+    //private void SelfInflictDamage()
+    //{
+    //    if (Input.GetKeyDown(inflictDamageKey))
+    //    {
+    //        TakeDamage(10f);
+    //    }
+    //}
 }

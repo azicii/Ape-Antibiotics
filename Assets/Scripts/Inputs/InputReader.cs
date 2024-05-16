@@ -14,14 +14,14 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
     private void OnEnable()
     {
         // Create a new instance
-        playerInputs = new PlayerInputs();
+        playerInputs ??= new PlayerInputs();
 
         // Set Input System Callbacks
         playerInputs.NormalGameplay.SetCallbacks(this);
 
         // Start with the enabled Action Map
         // This is for debugging and a game manager can control this at a later stage [Tegomlee].
-        EnableNormalGameplayActionMap();
+        SetNormalGameplay();
     }
 
     #endregion
@@ -46,7 +46,7 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
 
     #region Enable and Disable Action Maps
 
-    public void EnableNormalGameplayActionMap()
+    public void SetNormalGameplay()
     {
         // Disable other Action Maps
 

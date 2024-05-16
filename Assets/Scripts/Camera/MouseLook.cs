@@ -27,20 +27,20 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
-        MyInput();
+        //MyInput();
 
         cam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, wallRun.tilt);
         orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
-    void MyInput()
-    {
-        mouseX = Input.GetAxisRaw("Mouse X");
-        mouseY = Input.GetAxisRaw("Mouse Y");
+    //void MyInput()
+    //{
+    //    mouseX = Input.GetAxisRaw("Mouse X");
+    //    mouseY = Input.GetAxisRaw("Mouse Y");
 
-        yRotation += mouseX * sensX * multiplier;
-        xRotation -= mouseY * sensY * multiplier;
+    //    yRotation += mouseX * sensX * multiplier;
+    //    xRotation -= mouseY * sensY * multiplier;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-    }
+    //    xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+    //}
 }

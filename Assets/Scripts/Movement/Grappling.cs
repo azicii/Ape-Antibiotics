@@ -50,14 +50,14 @@ public class Grappling : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(grappleKey))
-        {
-            StartGrapple();
-        }
-        if (Input.GetKeyUp(grappleKey))
-        {
-            StopGrapple();
-        }
+        //if (Input.GetKeyDown(grappleKey))
+        //{
+        //    StartGrapple();
+        //}
+        //if (Input.GetKeyUp(grappleKey))
+        //{
+        //    StopGrapple();
+        //}
     }
 
     void LateUpdate()

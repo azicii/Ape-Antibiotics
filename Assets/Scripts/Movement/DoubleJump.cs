@@ -28,28 +28,28 @@ public class DoubleJump : MonoBehaviour
 
     void Update()
     {
-        DetectJump();
+        //DetectJump();
         DetectSecondJump();
     }
 
-    void DetectJump()
-    {
-        // Activate secondary groundcheck after initial jump
-        if (pm.isJumping)
-        {
-            groundCheck.gameObject.SetActive(true);
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        }
-    }
+    //void DetectJump()
+    //{
+    //    // Activate secondary groundcheck after initial jump
+    //    if (pm.isJumping)
+    //    {
+    //        groundCheck.gameObject.SetActive(true);
+    //        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+    //    }
+    //}
 
     void DetectSecondJump()
     {
         if (groundCheck.gameObject.activeSelf)
         {
-            if (Input.GetKeyDown(jumpKey) && !isGrounded)
-            {
-                jumpRequest = true;
-            }
+            //if (Input.GetKeyDown(jumpKey) && !isGrounded)
+            //{
+            //    jumpRequest = true;
+            //}
         }
     }
 
@@ -60,7 +60,7 @@ public class DoubleJump : MonoBehaviour
             PerformDoubleJump();
 
             jumpRequest = false;
-            pm.isJumping = false;
+            //pm.isJumping = false;
         }
     }
 
