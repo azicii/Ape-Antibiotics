@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
-using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.04f;
+    [SerializeField] private float readSpeed = 1.0f;
 
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
@@ -129,7 +129,7 @@ public class DialogueManager : MonoBehaviour
         //if text has items, you can unhide them here
 
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(readSpeed);
         canContinueToNextLine = true;
     }
 
