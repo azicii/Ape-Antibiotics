@@ -103,13 +103,8 @@ public class PlayerAgent : MonoBehaviour
         Vector3 moveDirection = transform.right * movementInput.x + transform.forward * movementInput.y;
         moveDirection.Normalize();
 
-        Debug.DrawRay(transform.position, moveDirection, Color.green);
-        Debug.DrawRay(transform.position, previousDirection, Color.magenta);
-
         // Calculate the dot product between the current and prevoius velocity
         float directionChange = Vector3.Dot(moveDirection, previousDirection);
-
-        Debug.Log(directionChange < 0.992f && moveDirection.magnitude > 0.1f);
 
         // Apply additional force for a snappier turn
         if (directionChange < 0.992f && moveDirection.magnitude > 0.1f)
@@ -172,9 +167,10 @@ public class PlayerAgent : MonoBehaviour
 
     private void ProcessJump()
     {
-        if (jumpCount <= maxJumpAmount)
+        if (jumpCount < maxJumpAmount)
         {
-            playerRigidbody.AddForce(0, jumpForce, 0, ForceMode.VelocityChange);
+            playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, jumpForce, playerRigidbody.velocity.z);
+            jumpCount++;
         }
     }
 

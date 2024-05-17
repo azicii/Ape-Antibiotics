@@ -3510,6 +3510,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1467536231332046153, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
+      propertyPath: gravity
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467536231332046153, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
+      propertyPath: jumpForce
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3251798768136653136, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3554,10 +3562,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3251798768136653139, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3251798768136653148, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5882805821401897574, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 61d8c453e29ac79488ef6b3b0448981d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
 --- !u!4 &8330503063304616264 stripped
