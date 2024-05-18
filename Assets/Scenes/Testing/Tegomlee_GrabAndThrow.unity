@@ -2814,6 +2814,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1852654450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3251798768136653148, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
+  m_PrefabInstance: {fileID: 6826139433738547224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1852654451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852654450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e2ebe60d7ce4c4b8909883881559b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: bcd85bee826b4a24c80efb82c343cd89, type: 2}
+  currentAbilities:
+  - ability: {fileID: 11400000, guid: f1cd58aa9b412b344971364e21e9856d, type: 2}
+  - ability: {fileID: 0}
+  - ability: {fileID: 0}
+  - ability: {fileID: 0}
 --- !u!1 &1951547735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,12 +3534,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1467536231332046153, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
-      propertyPath: gravity
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1467536231332046153, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
-      propertyPath: jumpForce
-      value: 25
+      propertyPath: verticalClamp
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3251798768136653136, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
       propertyPath: m_RootOrder
@@ -3562,18 +3581,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3251798768136653139, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3251798768136653148, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5882805821401897574, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 61d8c453e29ac79488ef6b3b0448981d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea728c3712d57fa4fb0af7e5ed95c46a, type: 3}
 --- !u!4 &8330503063304616264 stripped

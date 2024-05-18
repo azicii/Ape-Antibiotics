@@ -140,7 +140,7 @@ public class Punch : MonoBehaviour
             enemy.gameObject.GetComponent<EnemyMotor>().PrepareEnemyForKnockback();
 
             // Apply the knockback
-            Knockback.Instance.PerformKnockback(enemy, attackPoint.position, finalKnockbackValue);
+            Knockback.Instance.PerformKnockbackBetweenTwoPoints(enemy, attackPoint.position, finalKnockbackValue);
         }
 
         StartCoroutine(PunchCoolDown());

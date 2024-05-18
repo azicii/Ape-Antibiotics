@@ -134,7 +134,7 @@ public class GrabAndChuck : MonoBehaviour
 
         // Apply the "Knockback"
         Collider currentCollider = _currentHeldObject.GetComponent<Collider>();
-        Knockback.Instance.PerformKnockback(currentCollider, _holdPoint.position, _chuckForce);
+        Knockback.Instance.PerformKnockbackBetweenTwoPoints(currentCollider, _holdPoint.position, _chuckForce);
 
         // Reset the class state
         _currentHeldObject = null;

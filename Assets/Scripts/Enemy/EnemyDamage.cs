@@ -47,11 +47,11 @@ public class EnemyDamage : MonoBehaviour
             // Apply knockback to the object, checking for player health
             if (damageable.CurrentHealth > 0)
             {
-                Knockback.Instance.PerformKnockback(collision.collider, transform.position, knockbackForceAmount);
+                Knockback.Instance.PerformKnockbackBetweenTwoPoints(collision.collider, transform.position, knockbackForceAmount);
             }
             else
             {
-                Knockback.Instance.PerformKnockback(collision.collider, transform.position, knockbackForceAmount * knockoutForceMultiplier, true);
+                Knockback.Instance.PerformKnockbackUpwards(collision.collider, knockbackForceAmount * knockoutForceMultiplier);
             }
 
             // Start the coroutine

@@ -28,11 +28,6 @@ public class PlayerShield : MonoBehaviour, IDamageable
 
     //----------
 
-    [Header("Debugging")]
-    [SerializeField] KeyCode inflictDamageKey = KeyCode.T;
-
-    //----------
-
     private void Awake()
     {
         // Set the current health
