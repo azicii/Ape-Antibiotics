@@ -12,6 +12,7 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI taskText;
     [SerializeField] private TextMeshProUGUI taskNameText;
 
+    //change this to a different object or way of finding tasks
     public List<TaskData> tasksInLevel;
 
     public TaskData currentTask;
@@ -52,8 +53,8 @@ public class TaskManager : MonoBehaviour
         taskText.text = currentTask.TaskDescription;
     }
 
-    public void FindTask(string taskTag)
+    public void FindTask(string taskName)
     {
-        currentTask = tasksInLevel.Where(obj => obj.name == taskTag).SingleOrDefault();
+        currentTask = tasksInLevel.Where(obj => obj.name == taskName).SingleOrDefault();
     }
 }
