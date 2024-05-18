@@ -22,7 +22,6 @@ public class AbGroundPound : AbilityBase
         {
             // Get the camera's forward direction and position
             Vector3 cameraForward = parent.GetComponentInChildren<Camera>().transform.forward;
-            Vector3 cameraPosition = parent.GetComponentInChildren<Camera>().transform.position;
 
             // Determine if the first position's angle to the player is at least minumum
             Vector3 directionOfJump;
