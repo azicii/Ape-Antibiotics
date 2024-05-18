@@ -44,6 +44,12 @@ public class TaskManager : MonoBehaviour
         {
             OpenTask();
         }
+
+        if(Input.GetKey(KeyCode.C) && currentTask != null)
+        {
+            currentTask.OnCompleted();
+            //currentTask = null;
+        }
     }
 
     public void OpenTask()

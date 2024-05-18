@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: Lemons
   TaskDescription: They can burn houses down you know!
+  killEnemies: 0
+  reachArea: 0
+  survive: 0
