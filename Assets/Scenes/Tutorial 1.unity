@@ -166,11 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bc99f63f64e6844ac42582ce396c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingSpeed: 0.04
   taskPanel: {fileID: 166940474}
   taskText: {fileID: 1039166803}
   taskNameText: {fileID: 1433039464}
-  currentTask: {fileID: 11400000, guid: da92503afe506cb49a39bcd8ebb0c8b6, type: 2}
+  tasksInLevel:
+  - {fileID: 11400000, guid: da92503afe506cb49a39bcd8ebb0c8b6, type: 2}
+  currentTask: {fileID: 0}
 --- !u!95 &16266723 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6736811688728437045, guid: fbc5c21fd1984e244a71e24b797c9d62, type: 3}
