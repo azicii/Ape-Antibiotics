@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
 
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "portrait";
-    private const string QUEST_TAG = "quest";
+    private const string TASK_TAG = "quest";
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }*/
 
-        if (canContinueToNextLine == true )
+        if (canContinueToNextLine == true)
         {
             ContinueStory();
         }
@@ -156,8 +156,9 @@ public class DialogueManager : MonoBehaviour
                     portraitAnimator.Play(tagValue);
                     //Debug.Log("portrait = " + tagValue);
                     break;
-                case QUEST_TAG:
-                    Debug.Log("Quest = " + tagValue);
+                case TASK_TAG:
+                    TaskManager.GetInstance().FindTask(tagValue);
+                    //Debug.Log("Task = " + tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
