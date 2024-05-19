@@ -19,11 +19,14 @@ public class TaskManager : MonoBehaviour
 
     private static TaskManager instance;
 
+    Transform player;
+    float distanceLeeway = 2f;
+
     private void Awake()
     {
         if (instance != null)
         {
-            Debug.LogWarning("Found more than one Dialogue Manager in the scene");
+            Debug.LogWarning("Found more than one Task Manager in the scene");
         }
         instance = this;
     }
@@ -36,6 +39,7 @@ public class TaskManager : MonoBehaviour
     private void Start()
     {
         taskPanel.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
@@ -44,11 +48,29 @@ public class TaskManager : MonoBehaviour
         {
             OpenTask();
         }
+    }
 
-        if(Input.GetKey(KeyCode.C) && currentTask != null)
+    private void FixedUpdate()
+    {
+        if (currentTask != null)
         {
-            currentTask.OnCompleted();
-            //currentTask = null;
+            TrackTask();
+        }
+    }
+
+    void TrackTask()
+    {
+        switch (currentTask.requirement)
+        {
+            case TaskCompletionRequirements.CollectItems:
+                TrackItemsCollected();
+                break;
+            case TaskCompletionRequirements.KillEnemies:
+                TrackEnemyKills();
+                break;
+            case TaskCompletionRequirements.ReachAnArea:
+                TrackPlayerDistanceToArea();
+                break;
         }
     }
 
@@ -63,4 +85,23 @@ public class TaskManager : MonoBehaviour
     {
         currentTask = tasksInLevel.Where(obj => obj.name == taskName).SingleOrDefault();
     }
+
+    void TrackItemsCollected()
+    {
+        Debug.Log("Collecting Items!");
+
+        // on completion: currentTask.isCompleted = true;
+    }
+
+    void TrackEnemyKills()
+    {
+        Debug.Log("Killing enemies!");
+    }
+
+    void TrackPlayerDistanceToArea()
+    {
+        Debug.Log("Go to Area!");
+    }
 }
+
+
