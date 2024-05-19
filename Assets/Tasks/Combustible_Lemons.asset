@@ -18,3 +18,4 @@ MonoBehaviour:
   itemsToCollect: 0
   enemiesToKill: 0
   areaToReach: {fileID: 0}
+  isCompleted: 0
