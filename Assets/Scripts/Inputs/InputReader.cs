@@ -61,6 +61,8 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
     public void OnAim(InputAction.CallbackContext context)
     {
         AimEvent?.Invoke(context.ReadValue<Vector2>());
+
+        Debug.Log("mouse");
     }
 
     public void OnCombatAbility1(InputAction.CallbackContext context)

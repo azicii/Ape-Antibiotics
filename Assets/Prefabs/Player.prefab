@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 3251798768136653129}
   - component: {fileID: 1467536231332046153}
   - component: {fileID: -6139281541533267163}
+  - component: {fileID: 1852654451}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -532,7 +533,7 @@ MonoBehaviour:
   maxAcceleration: 30
   dragCoefficient: 1.6
   mouseSensitivity: 2
-  verticalClamp: 45
+  verticalClamp: 80
   rotationSpeed: 30
   jumpForce: 25
   maxJumpAmount: 2
@@ -551,6 +552,24 @@ MonoBehaviour:
   maxShieldHealth: 100
   timeBeforeRecharge: 3
   shieldRechargeRate: 7
+--- !u!114 &1852654451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251798768136653148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e2ebe60d7ce4c4b8909883881559b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: bcd85bee826b4a24c80efb82c343cd89, type: 2}
+  currentAbilities:
+  - ability: {fileID: 11400000, guid: f1cd58aa9b412b344971364e21e9856d, type: 2}
+  - ability: {fileID: 0}
+  - ability: {fileID: 0}
+  - ability: {fileID: 0}
 --- !u!1 &3251798768178196996
 GameObject:
   m_ObjectHideFlags: 0
