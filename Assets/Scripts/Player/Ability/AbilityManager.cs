@@ -53,8 +53,8 @@ public class AbilityManager : MonoBehaviour
         }
 
         // Subscribe methods to input reader events
-        inputReader.CombatOneStartedEvent += PerformFirst;
-        inputReader.CombatOneCancelledEvent += CleanupFirst;
+        inputReader.AbilityStartedEvent += PerformFirst;
+        inputReader.AbilityCancelledEvent += CleanupFirst;
 
         // Iterate over abilities and set the parameters
         for (int i = 0; i < currentAbilities.Length; i++)
@@ -95,23 +95,23 @@ public class AbilityManager : MonoBehaviour
 
     // There is room for improvement with this implementation, might change inputReader events to use an int for an index to prevent from rewriting code [Tegomlee].
 
-    private void PerformFirst()
+    private void PerformFirst(int abilityIndex)
     {
-        if (currentAbilities[0].abilityState == AbilityState.Ready)
+        if (currentAbilities[abilityIndex].abilityState == AbilityState.Ready)
         {
-            currentAbilities[0].ability.Perform(gameObject);
-            currentAbilities[0].abilityState = AbilityState.Active;
-            currentAbilities[0].abilityActiveTimer = currentAbilities[0].ability.ActiveTime;
+            currentAbilities[abilityIndex].ability.Perform(gameObject);
+            currentAbilities[abilityIndex].abilityState = AbilityState.Active;
+            currentAbilities[abilityIndex].abilityActiveTimer = currentAbilities[abilityIndex].ability.ActiveTime;
         }
     }
 
-    private void CleanupFirst()
+    private void CleanupFirst(int abilityIndex)
     {
-        if (currentAbilities[0].abilityState == AbilityState.Active)
+        if (currentAbilities[abilityIndex].abilityState == AbilityState.Active)
         {
-            currentAbilities[0].ability.Perform(gameObject);
-            currentAbilities[0].abilityState = AbilityState.Active;
-            currentAbilities[0].abilityActiveTimer = currentAbilities[0].ability.ActiveTime;
+            currentAbilities[abilityIndex].ability.Cleanup();
+            currentAbilities[abilityIndex].abilityState = AbilityState.Active;
+            currentAbilities[abilityIndex].abilityActiveTimer = currentAbilities[abilityIndex].ability.ActiveTime;
         }
     }
 }

@@ -55,15 +55,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sprint"",
-                    ""type"": ""Button"",
-                    ""id"": ""252a07d2-b05b-42da-8bf2-7198ad367934"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Crouch/Slide"",
                     ""type"": ""Button"",
                     ""id"": ""73b734e2-2675-41b6-b0d7-e1bd96b1fcb3"",
@@ -76,6 +67,33 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""name"": ""CombatAbility1"",
                     ""type"": ""Button"",
                     ""id"": ""4ca3d354-57bd-497b-91d3-124474fa9b7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CombatAbility2"",
+                    ""type"": ""Button"",
+                    ""id"": ""906cf5bb-2606-486a-85b3-73b434ec9e1a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UlitityAbility1"",
+                    ""type"": ""Button"",
+                    ""id"": ""252a07d2-b05b-42da-8bf2-7198ad367934"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UtilityAbilty2"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2202d1e-7b21-4407-a0ed-9d1124e71409"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -151,17 +169,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""98f3fea6-23e4-4475-a970-7a3c17cd5fbb"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c03cfc5e-2645-478f-832c-f5cc32b792dd"",
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
@@ -192,6 +199,39 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""239d1858-57ba-4a6b-be62-b942848662ff"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CombatAbility2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98f3fea6-23e4-4475-a970-7a3c17cd5fbb"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UlitityAbility1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""649af4ec-d343-41df-9434-86a6b37e573a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UtilityAbilty2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -203,9 +243,11 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_NormalGameplay_Movement = m_NormalGameplay.FindAction("Movement", throwIfNotFound: true);
         m_NormalGameplay_Aim = m_NormalGameplay.FindAction("Aim", throwIfNotFound: true);
         m_NormalGameplay_Jump = m_NormalGameplay.FindAction("Jump", throwIfNotFound: true);
-        m_NormalGameplay_Sprint = m_NormalGameplay.FindAction("Sprint", throwIfNotFound: true);
         m_NormalGameplay_CrouchSlide = m_NormalGameplay.FindAction("Crouch/Slide", throwIfNotFound: true);
         m_NormalGameplay_CombatAbility1 = m_NormalGameplay.FindAction("CombatAbility1", throwIfNotFound: true);
+        m_NormalGameplay_CombatAbility2 = m_NormalGameplay.FindAction("CombatAbility2", throwIfNotFound: true);
+        m_NormalGameplay_UlitityAbility1 = m_NormalGameplay.FindAction("UlitityAbility1", throwIfNotFound: true);
+        m_NormalGameplay_UtilityAbilty2 = m_NormalGameplay.FindAction("UtilityAbilty2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,9 +310,11 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_NormalGameplay_Movement;
     private readonly InputAction m_NormalGameplay_Aim;
     private readonly InputAction m_NormalGameplay_Jump;
-    private readonly InputAction m_NormalGameplay_Sprint;
     private readonly InputAction m_NormalGameplay_CrouchSlide;
     private readonly InputAction m_NormalGameplay_CombatAbility1;
+    private readonly InputAction m_NormalGameplay_CombatAbility2;
+    private readonly InputAction m_NormalGameplay_UlitityAbility1;
+    private readonly InputAction m_NormalGameplay_UtilityAbilty2;
     public struct NormalGameplayActions
     {
         private @PlayerInputs m_Wrapper;
@@ -278,9 +322,11 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_NormalGameplay_Movement;
         public InputAction @Aim => m_Wrapper.m_NormalGameplay_Aim;
         public InputAction @Jump => m_Wrapper.m_NormalGameplay_Jump;
-        public InputAction @Sprint => m_Wrapper.m_NormalGameplay_Sprint;
         public InputAction @CrouchSlide => m_Wrapper.m_NormalGameplay_CrouchSlide;
         public InputAction @CombatAbility1 => m_Wrapper.m_NormalGameplay_CombatAbility1;
+        public InputAction @CombatAbility2 => m_Wrapper.m_NormalGameplay_CombatAbility2;
+        public InputAction @UlitityAbility1 => m_Wrapper.m_NormalGameplay_UlitityAbility1;
+        public InputAction @UtilityAbilty2 => m_Wrapper.m_NormalGameplay_UtilityAbilty2;
         public InputActionMap Get() { return m_Wrapper.m_NormalGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -299,15 +345,21 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnJump;
-                @Sprint.started -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnSprint;
                 @CrouchSlide.started -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCrouchSlide;
                 @CrouchSlide.performed -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCrouchSlide;
                 @CrouchSlide.canceled -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCrouchSlide;
                 @CombatAbility1.started -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCombatAbility1;
                 @CombatAbility1.performed -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCombatAbility1;
                 @CombatAbility1.canceled -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCombatAbility1;
+                @CombatAbility2.started -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCombatAbility2;
+                @CombatAbility2.performed -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCombatAbility2;
+                @CombatAbility2.canceled -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnCombatAbility2;
+                @UlitityAbility1.started -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnUlitityAbility1;
+                @UlitityAbility1.performed -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnUlitityAbility1;
+                @UlitityAbility1.canceled -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnUlitityAbility1;
+                @UtilityAbilty2.started -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnUtilityAbilty2;
+                @UtilityAbilty2.performed -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnUtilityAbilty2;
+                @UtilityAbilty2.canceled -= m_Wrapper.m_NormalGameplayActionsCallbackInterface.OnUtilityAbilty2;
             }
             m_Wrapper.m_NormalGameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -321,15 +373,21 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
                 @CrouchSlide.started += instance.OnCrouchSlide;
                 @CrouchSlide.performed += instance.OnCrouchSlide;
                 @CrouchSlide.canceled += instance.OnCrouchSlide;
                 @CombatAbility1.started += instance.OnCombatAbility1;
                 @CombatAbility1.performed += instance.OnCombatAbility1;
                 @CombatAbility1.canceled += instance.OnCombatAbility1;
+                @CombatAbility2.started += instance.OnCombatAbility2;
+                @CombatAbility2.performed += instance.OnCombatAbility2;
+                @CombatAbility2.canceled += instance.OnCombatAbility2;
+                @UlitityAbility1.started += instance.OnUlitityAbility1;
+                @UlitityAbility1.performed += instance.OnUlitityAbility1;
+                @UlitityAbility1.canceled += instance.OnUlitityAbility1;
+                @UtilityAbilty2.started += instance.OnUtilityAbilty2;
+                @UtilityAbilty2.performed += instance.OnUtilityAbilty2;
+                @UtilityAbilty2.canceled += instance.OnUtilityAbilty2;
             }
         }
     }
@@ -339,8 +397,10 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
         void OnCrouchSlide(InputAction.CallbackContext context);
         void OnCombatAbility1(InputAction.CallbackContext context);
+        void OnCombatAbility2(InputAction.CallbackContext context);
+        void OnUlitityAbility1(InputAction.CallbackContext context);
+        void OnUtilityAbilty2(InputAction.CallbackContext context);
     }
 }

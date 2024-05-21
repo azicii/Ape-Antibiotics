@@ -39,8 +39,8 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
     public event Action JumpCancelledEvent;
 
     // Combat and Utility actions
-    public event Action CombatOneStartedEvent;
-    public event Action CombatOneCancelledEvent;
+    public event Action<int> AbilityStartedEvent;
+    public event Action<int> AbilityCancelledEvent;
 
     #endregion
 
@@ -69,12 +69,51 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
     {
         if (context.phase == InputActionPhase.Started)
         {
-            CombatOneStartedEvent?.Invoke();
+            AbilityStartedEvent?.Invoke(0);
         }
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            CombatOneCancelledEvent?.Invoke();
+            AbilityStartedEvent?.Invoke(0);
+        }
+    }
+
+    public void OnCombatAbility2(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            AbilityStartedEvent?.Invoke(1);
+        }
+
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            AbilityStartedEvent?.Invoke(1);
+        }
+    }
+
+    public void OnUlitityAbility1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            AbilityStartedEvent?.Invoke(2);
+        }
+
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            AbilityStartedEvent?.Invoke(2);
+        }
+    }
+
+    public void OnUtilityAbilty2(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            AbilityStartedEvent?.Invoke(3);
+        }
+
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            AbilityStartedEvent?.Invoke(3);
         }
     }
 

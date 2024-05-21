@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
-                    "type": "Button",
-                    "id": "252a07d2-b05b-42da-8bf2-7198ad367934",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Crouch/Slide",
                     "type": "Button",
                     "id": "73b734e2-2675-41b6-b0d7-e1bd96b1fcb3",
@@ -54,6 +45,33 @@
                     "name": "CombatAbility1",
                     "type": "Button",
                     "id": "4ca3d354-57bd-497b-91d3-124474fa9b7d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CombatAbility2",
+                    "type": "Button",
+                    "id": "906cf5bb-2606-486a-85b3-73b434ec9e1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UlitityAbility1",
+                    "type": "Button",
+                    "id": "252a07d2-b05b-42da-8bf2-7198ad367934",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UtilityAbilty2",
+                    "type": "Button",
+                    "id": "a2202d1e-7b21-4407-a0ed-9d1124e71409",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -129,17 +147,6 @@
                 },
                 {
                     "name": "",
-                    "id": "98f3fea6-23e4-4475-a970-7a3c17cd5fbb",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Sprint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c03cfc5e-2645-478f-832c-f5cc32b792dd",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
@@ -168,6 +175,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "239d1858-57ba-4a6b-be62-b942848662ff",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CombatAbility2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98f3fea6-23e4-4475-a970-7a3c17cd5fbb",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UlitityAbility1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "649af4ec-d343-41df-9434-86a6b37e573a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UtilityAbilty2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
