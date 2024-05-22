@@ -46,7 +46,7 @@ public class AbPunch : AbilityBase
 
         // Detect the objects in range of attack
         Vector3 attackPosition = parent.GetComponent<AbilityManager>().GetAttackPosition();
-        Collider[] hitColliders = Physics.OverlapSphere(attackPosition, 0.5f, affectedLayers);
+        Collider[] hitColliders = Physics.OverlapSphere(attackPosition, 0.9f, affectedLayers);
 
         // Affect the detected objects
         foreach (Collider hitCollider in hitColliders)
