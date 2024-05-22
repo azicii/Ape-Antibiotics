@@ -58,7 +58,7 @@ public abstract class AbilityBase : ScriptableObject
     /// <summary>
     /// This is where all neccesary ability clean up will execute (if necessary).
     /// </summary>
-    public virtual void Cleanup()
+    public virtual void Cleanup(GameObject parent, float timeSinceAbilityStarted)
     {
         // The default implementation of Cleanup(), Override if necessary [Tegomlee]
         return;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 /*
@@ -41,6 +42,8 @@ public class AbilityManager : MonoBehaviour
 
     [SerializeField] Ability[] currentAbilities = new Ability[4];
 
+    [SerializeField] Transform attackPoint;
+
     //----------
 
     private void Awake()
@@ -70,6 +73,7 @@ public class AbilityManager : MonoBehaviour
         // Manage the timers for the current abilities array
         for (int i = 0; i < currentAbilities.Length; i++)
         {
+            // Timer for any ability that is active
             if (currentAbilities[i].abilityState == AbilityState.Active)
             {
                 currentAbilities[i].abilityActiveTimer -= Time.deltaTime;
@@ -80,6 +84,7 @@ public class AbilityManager : MonoBehaviour
                 }
             }
 
+            // Timer for any ability that is in cool down
             else if (currentAbilities[i].abilityState == AbilityState.Cooldown)
             {
                 currentAbilities[i].abilityCooldownTimer -= Time.deltaTime;
@@ -92,8 +97,6 @@ public class AbilityManager : MonoBehaviour
     }
 
     //----------
-
-    // There is room for improvement with this implementation, might change inputReader events to use an int for an index to prevent from rewriting code [Tegomlee].
 
     private void PerformFirst(int abilityIndex)
     {
@@ -109,9 +112,19 @@ public class AbilityManager : MonoBehaviour
     {
         if (currentAbilities[abilityIndex].abilityState == AbilityState.Active)
         {
-            currentAbilities[abilityIndex].ability.Cleanup();
+            // Get the time of the abilityActiveTimer
+            float currentAblilityActiveTime = currentAbilities[abilityIndex].abilityActiveTimer;
+
+            currentAbilities[abilityIndex].ability.Cleanup(gameObject, currentAblilityActiveTime);
             currentAbilities[abilityIndex].abilityState = AbilityState.Active;
             currentAbilities[abilityIndex].abilityActiveTimer = currentAbilities[abilityIndex].ability.ActiveTime;
         }
+    }
+
+    //----------
+
+    public Vector3 GetAttackPosition()
+    {
+        return attackPoint.position;
     }
 }

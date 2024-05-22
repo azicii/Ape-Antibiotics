@@ -61,8 +61,6 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
     public void OnAim(InputAction.CallbackContext context)
     {
         AimEvent?.Invoke(context.ReadValue<Vector2>());
-
-        Debug.Log("mouse");
     }
 
     public void OnCombatAbility1(InputAction.CallbackContext context)
@@ -74,7 +72,7 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            AbilityStartedEvent?.Invoke(0);
+            AbilityCancelledEvent?.Invoke(0);
         }
     }
 
@@ -87,7 +85,7 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            AbilityStartedEvent?.Invoke(1);
+            AbilityCancelledEvent?.Invoke(1);
         }
     }
 
@@ -100,7 +98,7 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            AbilityStartedEvent?.Invoke(2);
+            AbilityCancelledEvent?.Invoke(2);
         }
     }
 
@@ -113,7 +111,7 @@ public class InputReader : ScriptableObject, PlayerInputs.INormalGameplayActions
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            AbilityStartedEvent?.Invoke(3);
+            AbilityCancelledEvent?.Invoke(3);
         }
     }
 

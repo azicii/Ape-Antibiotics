@@ -130,7 +130,7 @@ public class GrabAndChuck : MonoBehaviour
 
         // Prepare the enemy for knockback
         // This solution isn't great, will refactor if necessary [Tegomlee].
-        _currentHeldObject.GetComponent<EnemyMotor>().PrepareEnemyForKnockback();
+        //_currentHeldObject.GetComponent<EnemyMotor>().PrepareEnemyForKnockback();
 
         // Apply the "Knockback"
         Collider currentCollider = _currentHeldObject.GetComponent<Collider>();

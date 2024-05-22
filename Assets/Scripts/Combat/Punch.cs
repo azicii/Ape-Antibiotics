@@ -137,7 +137,7 @@ public class Punch : MonoBehaviour
 
             // Prepare the enemy for knockback
             // This isn't a great solution, will refactor if necessary [Tegomlee].
-            enemy.gameObject.GetComponent<EnemyMotor>().PrepareEnemyForKnockback();
+            //enemy.gameObject.GetComponent<EnemyMotor>().PrepareEnemyForKnockback();
 
             // Apply the knockback
             Knockback.Instance.PerformKnockbackBetweenTwoPoints(enemy, attackPoint.position, finalKnockbackValue);

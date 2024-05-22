@@ -11,9 +11,12 @@ public class AbDash : AbilityBase
     {
         if (parent.TryGetComponent(out Rigidbody parentRigidbody))
         {
-            Vector3 forward = parent.transform.forward;
+            // Calculate the direction
+            Vector3 forward = parent.GetComponentInChildren<Camera>().transform.forward;
 
-            parentRigidbody.AddForce(forward * force, ForceMode.VelocityChange);
+            // Directly change the player's velocity
+            parentRigidbody.velocity = Vector3.zero;
+            parentRigidbody.velocity = forward * force;
         }
     }
 }

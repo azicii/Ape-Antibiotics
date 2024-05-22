@@ -167,10 +167,13 @@ public class PlayerAgent : MonoBehaviour
 
     private void ProcessJump()
     {
+        // Increment the jump Counter
+        jumpCount++;
+
+        // Apply the jump force if appropriate
         if (jumpCount < maxJumpAmount)
         {
             playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x, jumpForce, playerRigidbody.velocity.z);
-            jumpCount++;
         }
     }
 

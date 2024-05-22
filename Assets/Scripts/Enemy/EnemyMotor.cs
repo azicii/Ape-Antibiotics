@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMotor : MonoBehaviour
+public class EnemyMotor : MonoBehaviour, IKnockable
 {
     [Header("NavMesh Attributes")]
 
@@ -107,7 +107,7 @@ public class EnemyMotor : MonoBehaviour
         return groundArray.Length > 0;
     }
 
-    public void PrepareEnemyForKnockback()
+    public void PrepareForKnockback()
     {
         _knockBackTime = 0f;
         _isKnocked = true;

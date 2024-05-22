@@ -363,36 +363,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3251798767338696535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3251798767338696534}
-  m_Layer: 8
-  m_Name: Punch Hitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3251798767338696534
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3251798767338696535}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3251798768178196999}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3251798767898665272
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,10 +498,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  distanceToCheckGround: 1.1
+  distanceToCheckGround: 1.05
   maxSpeed: 20
   maxAcceleration: 30
-  dragCoefficient: 1.6
+  dragCoefficient: 2.1
   mouseSensitivity: 2
   verticalClamp: 80
   rotationSpeed: 30
@@ -566,10 +536,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: bcd85bee826b4a24c80efb82c343cd89, type: 2}
   currentAbilities:
+  - ability: {fileID: 11400000, guid: d0fc241618afda14891c1b192b50a0fc, type: 2}
   - ability: {fileID: 11400000, guid: f1cd58aa9b412b344971364e21e9856d, type: 2}
+  - ability: {fileID: 11400000, guid: d6904b3decedbcc43a1cd7dd4fba95bb, type: 2}
   - ability: {fileID: 0}
-  - ability: {fileID: 0}
-  - ability: {fileID: 0}
+  attackPoint: {fileID: 6826139435147358581}
 --- !u!1 &3251798768178196996
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +553,7 @@ GameObject:
   - component: {fileID: 3251798768178197049}
   - component: {fileID: 3251798768178196998}
   m_Layer: 8
-  m_Name: Punch Sphere
+  m_Name: PunchSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,8 +569,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.1579947, y: 2.1579952, z: 2.1579947}
-  m_Children:
-  - {fileID: 3251798767338696534}
+  m_Children: []
   m_Father: {fileID: 6826139434442827873}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -992,7 +962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8498592480905944240}
   m_Layer: 8
-  m_Name: Grapple Hook
+  m_Name: GrappleHook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

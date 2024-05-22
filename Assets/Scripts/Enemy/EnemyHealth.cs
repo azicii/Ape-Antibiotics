@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] float hitPoints = 100f;
+    public float CurrentHealth { get { return hitPoints; } }
+
     [SerializeField] float timeBeforeDestroy = 3f;
     Animator animator;
     public Image healthBar;

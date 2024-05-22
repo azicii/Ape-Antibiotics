@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3dfb7b36b5c704409f76ac4e7a27352, type: 3}
-  m_Name: Dash
+  m_Script: {fileID: 11500000, guid: cb59f8f5a79366348b4e276612a7b6fa, type: 3}
+  m_Name: Punch
   m_EditorClassIdentifier: 
-  activeTime: 2
-  cooldownTime: 2
-  typeOfAbility: 1
-  force: 30
+  activeTime: 5
+  cooldownTime: 0
+  typeOfAbility: 0
+  baseDamage: 10
+  affectedLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  baseKnockbackForce: 5
