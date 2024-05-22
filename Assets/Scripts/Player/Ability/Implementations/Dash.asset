@@ -15,4 +15,4 @@ MonoBehaviour:
   activeTime: 2
   cooldownTime: 2
   typeOfAbility: 1
-  force: 30
+  force: 60

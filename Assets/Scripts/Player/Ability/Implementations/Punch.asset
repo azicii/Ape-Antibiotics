@@ -15,8 +15,9 @@ MonoBehaviour:
   activeTime: 5
   cooldownTime: 0
   typeOfAbility: 0
-  baseDamage: 10
+  minDamage: 10
+  maxDamage: 30
   affectedLayers:
     serializedVersion: 2
     m_Bits: 128
-  baseKnockbackForce: 5
+  baseKnockbackForce: 10

@@ -507,3 +507,5 @@ MonoBehaviour:
     m_Bits: 256
   amountOfDamage: 10
   knockbackForceAmount: 10
+  knockoutForceMultiplier: 0
+  timeBetweenDamageTicks: 0
