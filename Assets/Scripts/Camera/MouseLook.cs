@@ -27,6 +27,8 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.GameIsPaused) return; // Do nothing if the game is paused
+
         MyInput();
 
         cam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, wallRun.tilt);
@@ -35,6 +37,8 @@ public class MouseLook : MonoBehaviour
 
     void MyInput()
     {
+        if (PauseMenu.GameIsPaused) return; // Do nothing if the game is paused
+
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 
