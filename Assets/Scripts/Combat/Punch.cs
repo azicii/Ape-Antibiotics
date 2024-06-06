@@ -134,7 +134,7 @@ public class Punch : MonoBehaviour
         {
             // Refactored to use TryGetComponent instead, Could further refactor with an interface or abstract class [Tegomlee]
             Debug.Log($"{this.name} has punched {enemy.name}");
-            if (enemy.gameObject.TryGetComponent<EnemyHealth>(out var enemyHealth))
+            if (enemy.gameObject.TryGetComponent(out IDamageable enemyHealth))
             {
                 enemyHealth.TakeDamage(damageBasedOnCharge);
             }
@@ -144,7 +144,10 @@ public class Punch : MonoBehaviour
 
             // Prepare the enemy for knockback
             // This isn't a great solution, will refactor if necessary [Tegomlee].
-            enemy.gameObject.GetComponent<EnemyMotor>().PrepareEnemyForKnockback();
+            if (enemy.gameObject.TryGetComponent(out EnemyMotor enemyMotor)) 
+            {
+                enemyMotor.PrepareEnemyForKnockback();
+            }
 
             // Apply the knockback
             Knockback.Instance.PerformKnockback(enemy, attackPoint.position, finalKnockbackValue);
