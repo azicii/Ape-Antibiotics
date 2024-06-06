@@ -88,9 +88,11 @@ public class TaskManager : MonoBehaviour
 
     void TrackItemsCollected()
     {
-        Debug.Log("Collecting Items!");
-
-        // on completion: currentTask.isCompleted = true;
+        if(currentTask.itemsCollected == currentTask.itemsToCollect)
+        {
+            Debug.Log("Player collected all items!");
+        }
+        //Debug.Log("Collecting Items!");
     }
 
     void TrackEnemyKills()
@@ -100,7 +102,11 @@ public class TaskManager : MonoBehaviour
 
     void TrackPlayerDistanceToArea()
     {
-        Debug.Log("Go to Area!");
+        if(currentTask.areaToReach.GetComponent<ReachPoint>().playerInReachPoint == true)
+        {
+            Debug.Log("Player reached area!");
+        }
+        //Debug.Log("Go to Area!");
     }
 }
 

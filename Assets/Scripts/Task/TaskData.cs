@@ -15,9 +15,13 @@ public class TaskData : ScriptableObject
     public TaskCompletionRequirements requirement;
 
     [Header("Requirement Values")]
+    [SerializeField] [HideInInspector] public int itemsCollected;
     [SerializeField] [HideInInspector] public int itemsToCollect;
+    [SerializeField] [HideInInspector] public GameObject itemToCollect;
+    [SerializeField] [HideInInspector] public int enemiesKilled;
     [SerializeField] [HideInInspector] public int enemiesToKill;
-    [SerializeField] [HideInInspector] public Transform areaToReach;
+    [SerializeField] [HideInInspector] public GameObject enemieToKill;
+    [SerializeField] [HideInInspector] public GameObject areaToReach;
     [SerializeField] public bool isCompleted;
 }
 
@@ -34,12 +38,16 @@ public class TaskDataEditor : Editor
         {
             case TaskCompletionRequirements.CollectItems:
                 taskData.itemsToCollect = EditorGUILayout.IntField("Items to collect: ", taskData.itemsToCollect);
+                taskData.itemsCollected = EditorGUILayout.IntField("Items collected: ", taskData.itemsCollected);
+                taskData.itemToCollect = EditorGUILayout.ObjectField("Item to collect: ", taskData.itemToCollect, typeof(GameObject), true) as GameObject;
                 break;
             case TaskCompletionRequirements.KillEnemies:
+                taskData.itemsToCollect = EditorGUILayout.IntField("Items to collect: ", taskData.itemsToCollect);
                 taskData.enemiesToKill = EditorGUILayout.IntField("Enemies to kill: ", taskData.enemiesToKill);
+                taskData.enemieToKill = EditorGUILayout.ObjectField("Enemie to kill: ", taskData.enemieToKill, typeof(GameObject), true) as GameObject;
                 break;
             case TaskCompletionRequirements.ReachAnArea:
-                taskData.areaToReach = EditorGUILayout.ObjectField("Area to reach: ", taskData.areaToReach, typeof(Transform), true) as Transform;
+                taskData.areaToReach = EditorGUILayout.ObjectField("Area to reach: ", taskData.areaToReach, typeof(GameObject), true) as GameObject;
                 break;
             default:
                 return;
