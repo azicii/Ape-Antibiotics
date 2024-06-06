@@ -33,7 +33,6 @@ public class Dash : MonoBehaviour
     {
         if (Input.GetKeyDown(dashKey))
         {
-            GameManager.Instance.cameraLines.Play();
             dashRequest = true;
         }
 
@@ -48,6 +47,7 @@ public class Dash : MonoBehaviour
         if (dashRequest)
         {
             Dashing();
+
             dashRequest = false;
         }
     }
@@ -62,6 +62,7 @@ public class Dash : MonoBehaviour
         {
             dashCdTimer = dashCd;
         }
+
         Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;
 
         rb.AddForce(forceToApply, ForceMode.Impulse);
@@ -71,7 +72,6 @@ public class Dash : MonoBehaviour
 
     private void ResetDash()
     {
-        // GameManager.Instance.cameraLines.Stop();
         Debug.Log("Dash Reset");
     }
 }

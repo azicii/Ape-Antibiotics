@@ -6,17 +6,12 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private bool scoreOnDestroy;
-    
-    [Tooltip("Number of coins to drop on destroying the object")]
-    [SerializeField] private int coinsToDrop;
-    
     [SerializeField] float hitPoints = 100f;
     [SerializeField] float timeBeforeDestroy = 3f;
     Animator animator;
     public Image healthBar;
     public float timeBeforeReposition = 5f;
-    
+
     bool isDead = false;
 
     public bool IsDead()
@@ -31,10 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        if(healthBar)
-        {
-            healthBar.fillAmount = hitPoints / 100;    
-        }
+        healthBar.fillAmount = hitPoints / 100;
     }
 
     public void TakeDamage(float damage)
@@ -53,18 +45,6 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-
-        if (scoreOnDestroy)
-        {
-            ScoreManager.Instance.Score();
-            Debug.Log("Score from Player Death. Score - "+ScoreManager.Instance.GetScore().ToString());    
-        }
-        else
-        {
-            ScoreManager.Instance.DropCoins(coinsToDrop, gameObject.transform.position);
-            
-            Destroy(gameObject);
-        }
         GetComponent<NavMeshAgent>().enabled = false;
         animator.SetTrigger("die");
         Destroy(gameObject, timeBeforeDestroy);
