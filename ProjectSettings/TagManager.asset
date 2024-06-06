@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Camera Position
+  - Level
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,10 +15,10 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - PlayerBody
+  - Respawn
   - 
   - 
   - 
