@@ -10,7 +10,6 @@ public class SwapSprite : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("hover");
         HoverPanel.SetActive(true);
     }
 
