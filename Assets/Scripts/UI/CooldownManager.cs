@@ -20,7 +20,12 @@ public class CooldownManager : MonoBehaviour
         cooldownIcon.icon.fillAmount = 1;
 
         // Animate the fill amount from 1 to 0 over the duration
-        cooldownIcon.icon.DOFillAmount(0, cooldownIcon.cooldownDuration).SetEase(Ease.Linear);
+        cooldownIcon.icon.DOFillAmount(0, cooldownIcon.cooldownDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            // Reset fill amount to 1 after cooldown is complete
+            cooldownIcon.icon.fillAmount = 1;
+            Debug.Log("Cooldown complete and reset");
+        });
     }
 
     // Example method to manually start a cooldown for a specific icon
