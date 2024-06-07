@@ -14,15 +14,11 @@ public class TaskData : ScriptableObject
     [Header("Completion Requirement")]
     public TaskCompletionRequirements requirement;
 
-    [Header("Requirement Values")]
-    [SerializeField] [HideInInspector] public int itemsCollected;
-    [SerializeField] [HideInInspector] public int itemsToCollect;
-    [SerializeField] [HideInInspector] public GameObject itemToCollect;
-    [SerializeField] [HideInInspector] public int enemiesKilled;
-    [SerializeField] [HideInInspector] public int enemiesToKill;
-    [SerializeField] [HideInInspector] public GameObject enemieToKill;
-    [SerializeField] [HideInInspector] public GameObject areaToReach;
     [SerializeField] public bool isCompleted;
+
+    [SerializeField] /*[HideInInspector]*/ public List<GameObject> itemsToCollect;
+    [SerializeField] [HideInInspector] public List<GameObject> enemiesToKill;
+    [SerializeField] [HideInInspector] public GameObject areaToReach;
 }
 
 [CustomEditor(typeof(TaskData))]
@@ -34,20 +30,20 @@ public class TaskDataEditor : Editor
 
         base.OnInspectorGUI();
 
-        switch(taskData.requirement)
+        var itemList = serializedObject.FindProperty("itemsToCollect");
+        var hitList = serializedObject.FindProperty("enemiesToKill");
+        var area = serializedObject.FindProperty("areaToReach");
+
+        switch (taskData.requirement)
         {
             case TaskCompletionRequirements.CollectItems:
-                taskData.itemsToCollect = EditorGUILayout.IntField("Items to collect: ", taskData.itemsToCollect);
-                taskData.itemsCollected = EditorGUILayout.IntField("Items collected: ", taskData.itemsCollected);
-                taskData.itemToCollect = EditorGUILayout.ObjectField("Item to collect: ", taskData.itemToCollect, typeof(GameObject), true) as GameObject;
+               // EditorGUILayout.PropertyField(itemList, new GUIContent("Items to Collect"), true);
                 break;
             case TaskCompletionRequirements.KillEnemies:
-                taskData.itemsToCollect = EditorGUILayout.IntField("Items to collect: ", taskData.itemsToCollect);
-                taskData.enemiesToKill = EditorGUILayout.IntField("Enemies to kill: ", taskData.enemiesToKill);
-                taskData.enemieToKill = EditorGUILayout.ObjectField("Enemie to kill: ", taskData.enemieToKill, typeof(GameObject), true) as GameObject;
+                EditorGUILayout.PropertyField(hitList, new GUIContent("Enemies to Kill"), true);
                 break;
             case TaskCompletionRequirements.ReachAnArea:
-                taskData.areaToReach = EditorGUILayout.ObjectField("Area to reach: ", taskData.areaToReach, typeof(GameObject), true) as GameObject;
+                EditorGUILayout.PropertyField(area, new GUIContent("Area to Reach"), true);
                 break;
             default:
                 return;

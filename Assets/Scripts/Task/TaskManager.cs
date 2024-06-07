@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,15 +13,15 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI taskText;
     [SerializeField] private TextMeshProUGUI taskNameText;
 
+    [SerializeField] public List<GameObject> itemsCollected;
+    [SerializeField] public int destructiblesGotten;
+
     //change this to a different object or way of finding tasks
     public List<TaskData> tasksInLevel;
 
     public TaskData currentTask;
 
     private static TaskManager instance;
-
-    Transform player;
-    float distanceLeeway = 2f;
 
     private void Awake()
     {
@@ -39,7 +40,6 @@ public class TaskManager : MonoBehaviour
     private void Start()
     {
         taskPanel.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
@@ -88,11 +88,18 @@ public class TaskManager : MonoBehaviour
 
     void TrackItemsCollected()
     {
-        if(currentTask.itemsCollected == currentTask.itemsToCollect)
+        if(DoListsMatch(itemsCollected, currentTask.itemsToCollect))
         {
             Debug.Log("Player collected all items!");
+            currentTask.isCompleted = true;
+            currentTask = null;
+            itemsCollected.Count.Equals(0);
         }
-        //Debug.Log("Collecting Items!");
+    }
+
+    private bool DoListsMatch(List<GameObject> list1, List<GameObject> list2)
+    {
+        return list1.TrueForAll(list2.Contains) && list2.TrueForAll(list1.Contains);
     }
 
     void TrackEnemyKills()
@@ -102,12 +109,14 @@ public class TaskManager : MonoBehaviour
 
     void TrackPlayerDistanceToArea()
     {
-        if(currentTask.areaToReach.GetComponent<ReachPoint>().playerInReachPoint == true)
+        //Debug.Log("Go to Area!");
+        if (currentTask.areaToReach.GetComponent<ReachPoint>().playerInReachPoint == true)
         {
             Debug.Log("Player reached area!");
+            currentTask = null;
         }
-        //Debug.Log("Go to Area!");
     }
 }
+
 
 

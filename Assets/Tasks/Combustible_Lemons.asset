@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskName: Lemons
   TaskDescription: They can burn houses down you know!
-  requirement: 1
-  itemsCollected: 0
-  itemsToCollect: 0
-  itemToCollect: {fileID: 0}
-  enemiesKilled: 0
-  enemiesToKill: 0
-  enemieToKill: {fileID: 0}
-  areaToReach: {fileID: 0}
+  requirement: 0
   isCompleted: 0
+  itemsToCollect:
+  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
+  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
+  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
+  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
+  enemiesToKill: []
+  areaToReach: {fileID: 0}
