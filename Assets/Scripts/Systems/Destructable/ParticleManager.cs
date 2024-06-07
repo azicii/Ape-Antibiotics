@@ -38,6 +38,8 @@ public class ParticleManager : MonoBehaviour
         Vector3 parentPosition = parent.transform.position;
         Vector3 parentForward = parent.transform.forward;
 
+        Vector3 originOfAttackPosition = GameObject.FindGameObjectWithTag("Player").transform.Find("CameraHolder").transform.Find("GunHolder").transform.Find("Punch Sphere").transform.position;
+
         Mesh parentMesh = parent.GetComponent<MeshFilter>().mesh;
         Material parentMaterial = parent.GetComponent<MeshRenderer>().material;
 
@@ -68,6 +70,10 @@ public class ParticleManager : MonoBehaviour
             currentParticle.GetComponent<MeshFilter>().mesh = parentMesh;
 
             // Force
+            Vector3 directionOfForce = randomPosition - originOfAttackPosition;
+            directionOfForce.Normalize();
+            Rigidbody currentParticleRigidbody = currentParticle.GetComponent<Rigidbody>();
+            currentParticleRigidbody.AddForce(directionOfForce * 30f, ForceMode.VelocityChange);
         }
     }
 
