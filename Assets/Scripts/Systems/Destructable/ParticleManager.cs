@@ -66,6 +66,8 @@ public class ParticleManager : MonoBehaviour
             currentParticle.transform.position = randomPosition;
             currentParticle.GetComponent<MeshRenderer>().material = parentMaterial;
             currentParticle.GetComponent<MeshFilter>().mesh = parentMesh;
+
+            // Force
         }
     }
 

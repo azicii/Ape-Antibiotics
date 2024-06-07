@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] float hitPoints = 100f;
     [SerializeField] float timeBeforeDestroy = 3f;
@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     public float timeBeforeReposition = 5f;
 
     bool isDead = false;
+
+    public float CurrentHealth => hitPoints;
 
     public bool IsDead()
     {
