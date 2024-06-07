@@ -108,4 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75c120edef72fe4a850ddb87aa48266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tm: {fileID: 0}
+  taskManager: {fileID: 7251036754617571430, guid: a0ca7845d78f9414ab6676c166c97f37, type: 3}
+  itemName: Coin

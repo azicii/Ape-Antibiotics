@@ -16,7 +16,7 @@ public class TaskData : ScriptableObject
 
     [SerializeField] public bool isCompleted;
 
-    [SerializeField] /*[HideInInspector]*/ public List<GameObject> itemsToCollect;
+    [SerializeField] /*[HideInInspector]*/ public List<string> itemsToCollect;
     [SerializeField] [HideInInspector] public List<GameObject> enemiesToKill;
     [SerializeField] [HideInInspector] public GameObject areaToReach;
 }

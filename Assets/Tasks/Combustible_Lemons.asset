@@ -15,11 +15,11 @@ MonoBehaviour:
   TaskName: Lemons
   TaskDescription: They can burn houses down you know!
   requirement: 0
-  isCompleted: 0
+  isCompleted: 1
   itemsToCollect:
-  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
-  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
-  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
-  - {fileID: 3003364347584199767, guid: c8407a87b4240e14296d0a388c93c4f5, type: 3}
+  - Coin
+  - Coin
+  - Coin
+  - Coin
   enemiesToKill: []
   areaToReach: {fileID: 0}

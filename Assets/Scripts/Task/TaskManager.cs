@@ -13,7 +13,7 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI taskText;
     [SerializeField] private TextMeshProUGUI taskNameText;
 
-    [SerializeField] public List<GameObject> itemsCollected;
+    [SerializeField] public List<string> itemsCollected;
     [SerializeField] public int destructiblesGotten;
 
     //change this to a different object or way of finding tasks
@@ -93,13 +93,28 @@ public class TaskManager : MonoBehaviour
             Debug.Log("Player collected all items!");
             currentTask.isCompleted = true;
             currentTask = null;
-            itemsCollected.Count.Equals(0);
         }
     }
 
-    private bool DoListsMatch(List<GameObject> list1, List<GameObject> list2)
+    private bool DoListsMatch(List<string> list1, List<string> list2)
     {
-        return list1.TrueForAll(list2.Contains) && list2.TrueForAll(list1.Contains);
+        list1.Sort();
+        list2.Sort();
+
+        if(list1.Count != list2.Count)
+        {
+            return false;
+        }
+
+        foreach(item in list1)
+        {
+            for(int i=0; i < list2; i++)
+            {
+
+            }
+        }
+
+        return true;
     }
 
     void TrackEnemyKills()
