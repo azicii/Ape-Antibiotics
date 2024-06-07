@@ -33,10 +33,20 @@ public class Punch : MonoBehaviour
     [Tooltip("The amount of knockback applied to the enemy.")]
     [SerializeField] float attackKnockbackForceMultiplier;
 
+    [Tooltip("Enables Punch Dash")]
+    [SerializeField] private bool isPunchDashEnable;
+
+    [Tooltip("The amount of force applied to the player when punching.")]
+    [SerializeField] private float punchDashForce;
+
+
+
     //----------
 
     // References
     private Animator anim;
+
+    [SerializeField]private Camera camera1;
 
     // Variables
     private bool canPunch = true;
@@ -121,6 +131,13 @@ public class Punch : MonoBehaviour
         // Reset isCharging
         isChargingUp = false;
 
+        //AD HOC Start
+        if (isPunchDashEnable)
+        {
+            this.gameObject.GetComponent<Rigidbody>().AddForce(camera1.transform.forward * punchDashForce);
+        }
+        //AD HOC Finish
+
         // Play attack animation
         //anim.SetTrigger("Punch");
 
@@ -132,9 +149,6 @@ public class Punch : MonoBehaviour
         // Damage them
         foreach (Collider enemy in hitEnemies)
         {
-            // pretty inefficient because we're using
-            // getcomponent twice but idk how to really optimize this
-
             // Refactored to use TryGetComponent instead, Could further refactor with an interface or abstract class [Tegomlee]
             Debug.Log($"{this.name} has punched {enemy.name}");
             if (enemy.gameObject.TryGetComponent<EnemyHealth>(out var enemyHealth))
@@ -142,13 +156,15 @@ public class Punch : MonoBehaviour
                 enemyHealth.TakeDamage(damageBasedOnCharge);
             }
 
-            // Knock them back - Now uses the IKnockable interface
-            if (enemy.gameObject.TryGetComponent<IKnockable>(out var knockable))
-            {
-                // Knocks the enemy based on multiple factors
-                float finalKnockbackValue = attackKnockbackForceMultiplier * damageBasedOnCharge;
-                knockable.KnockBack(attackPoint.position, finalKnockbackValue);
-            }
+            // Calculate the final knock force
+            float finalKnockbackValue = attackKnockbackForceMultiplier * damageBasedOnCharge;
+
+            // Prepare the enemy for knockback
+            // This isn't a great solution, will refactor if necessary [Tegomlee].
+            enemy.gameObject.GetComponent<EnemyMotor>().PrepareEnemyForKnockback();
+
+            // Apply the knockback
+            Knockback.Instance.PerformKnockback(enemy, attackPoint.position, finalKnockbackValue);
         }
 
         StartCoroutine(PunchCoolDown());

@@ -38,7 +38,7 @@ public class Dash : MonoBehaviour
             dashRequest = true;
         }
 
-        if (dashCdTimer >0)
+        if (dashCdTimer > 0)
         {
             dashCdTimer -= Time.deltaTime;
         }
