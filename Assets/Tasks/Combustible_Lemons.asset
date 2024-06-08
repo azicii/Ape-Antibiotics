@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8aeaa203000434fb1b6591ff545c42, type: 3}
   m_Name: Combustible_Lemons
   m_EditorClassIdentifier: 
-  TaskName: Lemons
-  TaskDescription: They can burn houses down you know!
-  requirement: 0
-  isCompleted: 1
+  taskName: Lemons
+  TaskDescription: []
+  requirements: 000000000100000002000000
+  isCompleted: 0
   itemsToCollect:
   - Coin
   - Coin
   - Coin
   - Coin
-  enemiesToKill: []
+  enemiesToKill:
+  - Bacteria
+  - Bacteria
+  - Bacteria
   areaToReach: {fileID: 0}

@@ -14,6 +14,7 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI taskNameText;
 
     [SerializeField] public List<string> itemsCollected;
+    [SerializeField] public List<string> eliminatedEnemies;
     [SerializeField] public int destructiblesGotten;
 
     //change this to a different object or way of finding tasks
@@ -60,25 +61,75 @@ public class TaskManager : MonoBehaviour
 
     void TrackTask()
     {
-        switch (currentTask.requirement)
+        for (int i = 0; i < currentTask.requirements.Length; i++)
         {
-            case TaskCompletionRequirements.CollectItems:
-                TrackItemsCollected();
-                break;
-            case TaskCompletionRequirements.KillEnemies:
-                TrackEnemyKills();
-                break;
-            case TaskCompletionRequirements.ReachAnArea:
-                TrackPlayerDistanceToArea();
-                break;
+            switch (currentTask.requirements[i])
+            {
+                case TaskCompletionRequirements.CollectItems:
+                    TrackItemsCollected();
+                    break;
+                case TaskCompletionRequirements.KillEnemies:
+                    TrackEnemyKills();
+                    break;
+                case TaskCompletionRequirements.ReachAnArea:
+                    TrackPlayerDistanceToArea();
+                    break;
+            }
         }
     }
 
     public void OpenTask()
     {
         taskPanel.SetActive(!taskPanel.activeInHierarchy);
-        taskNameText.text = currentTask.TaskName.ToUpper();
-        taskText.text = currentTask.TaskDescription;
+        taskNameText.text = currentTask.taskName.ToUpper();
+        taskText.text = "";
+        for(int i = 0; i < currentTask.requirements.Length; i++)
+        {
+            if(currentTask.requirements[i] == TaskCompletionRequirements.CollectItems)
+            {
+                string collection = "";
+                for (int j = 0; j < currentTask.itemsToCollect.Count; j++)
+                {
+                    if(j != currentTask.itemsToCollect.Count - 1)
+                    {
+                        collection += "a " + currentTask.itemsToCollect[j] + ", ";
+                    } else
+                    {
+                        collection += "and a " + currentTask.itemsToCollect[j];
+                    }
+                }
+
+                taskText.text += " - Collect "+ collection + "<br>";
+
+                collection = "";
+            } else if(currentTask.requirements[i] == TaskCompletionRequirements.KillEnemies)
+            {
+                string hitList = "";
+                for (int j = 0; j < currentTask.enemiesToKill.Count; j++)
+                {
+                    if (j != currentTask.enemiesToKill.Count - 1)
+                    {
+                        hitList += "a " + currentTask.enemiesToKill[j] + ", ";
+                    }
+                    else
+                    {
+                        hitList += "and a " + currentTask.enemiesToKill[j];
+                    }
+                }
+
+                taskText.text += " - Eliminate " + hitList + "<br>";
+
+                hitList = "";
+            }
+            else if(currentTask.requirements[i] == TaskCompletionRequirements.ReachAnArea)
+            {
+                taskText.text += " - Reach " + currentTask.areaToReach.name + "<br>";
+            }
+            else
+            {
+                Debug.LogWarning("Invalid completion requirement! Please add requirement to TaskCompletionRequirements");
+            }
+        }
     }
 
     public void FindTask(string taskName)
@@ -91,8 +142,6 @@ public class TaskManager : MonoBehaviour
         if(DoListsMatch(itemsCollected, currentTask.itemsToCollect))
         {
             Debug.Log("Player collected all items!");
-            currentTask.isCompleted = true;
-            currentTask = null;
         }
     }
 
@@ -106,29 +155,22 @@ public class TaskManager : MonoBehaviour
             return false;
         }
 
-        foreach(item in list1)
-        {
-            for(int i=0; i < list2; i++)
-            {
-
-            }
-        }
-
         return true;
     }
 
     void TrackEnemyKills()
     {
-        Debug.Log("Killing enemies!");
+        if (DoListsMatch(eliminatedEnemies, currentTask.enemiesToKill))
+        {
+            Debug.Log("Player eliminated all enemies!");
+        }
     }
 
     void TrackPlayerDistanceToArea()
     {
-        //Debug.Log("Go to Area!");
         if (currentTask.areaToReach.GetComponent<ReachPoint>().playerInReachPoint == true)
         {
             Debug.Log("Player reached area!");
-            currentTask = null;
         }
     }
 }
