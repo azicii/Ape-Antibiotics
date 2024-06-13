@@ -23,7 +23,6 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject settings;
     [SerializeField] private GameObject pause;
 
-
     //============================= UI Manager ====================================
     // Start is called before the first frame update
     private void Start()
@@ -37,6 +36,7 @@ public class HUDManager : MonoBehaviour
     public void ShowHud()
     {
         hudManager.SetActive(true);
+        this.GetComponent<PauseMenu>().Resume();
         win.SetActive(false);
         gameOver.SetActive(false);
         settings.SetActive(false);
@@ -75,7 +75,7 @@ public class HUDManager : MonoBehaviour
         hudManager.SetActive(true);
         win.SetActive(false);
         gameOver.SetActive(false);
-        settings.SetActive(true);
+        settings.SetActive(!settings.activeSelf);
         pause.SetActive(false);
     }
 
