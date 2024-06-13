@@ -4,16 +4,18 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private bool ShouldCrouch => Input.GetKeyDown(crouchKey) && isGrounded && !wr.wallRunning;
+
     float playerHeight = 2f;
 
     [SerializeField] Transform orientation;
-
+    
     [Header("Movement")]
     float speed;
     [SerializeField] Text speedText;
     private float currentSpeed;
     WallRun wr;
-   
+
     [Header("Sprinting")]
     [SerializeField] float walkSpeed = 4f;
     [SerializeField] float sprintSpeed = 6f;
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
+    [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Drag")]
     public float groundDrag = 6f;
@@ -43,11 +46,18 @@ public class PlayerMovement : MonoBehaviour
     float groundDistance = 0.4f;
     public bool isGrounded;
 
+    [Header("Crouch Parameters")]
+    [SerializeField] private float timeToCrouch;
+    [SerializeField] private float crouchingHeight;
+    [SerializeField] private float standingHeight;
+    [SerializeField] private float crouchingMoveSpeed;
+    private CapsuleCollider _capsuleCollider;
+    [SerializeField] private bool isCrouching;
+
     Vector3 moveDirection;
     Vector3 slopeMoveDirection;
 
     Rigidbody rb;
-    Animator animator;
 
     RaycastHit slopeHit;
 
@@ -56,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         wr = GetComponent<WallRun>();
-        animator = GetComponentInChildren<Animator>();
+        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
     }
 
     private void Update()
@@ -68,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             jumpRequest = true;
+        }
+
+        if (ShouldCrouch)
+        {
+            HandleCrouch();
         }
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
@@ -82,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         if (jumpRequest)
         {
             Jump();
-            animator.SetTrigger("Jumping");
+
             jumpRequest = false;
         }
 
@@ -95,16 +110,6 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
-
-        // Animator
-        if (horizontalMovement != 0 || verticalMovement != 0)
-        {
-            animator.SetBool("Running", true);
-        }
-        else
-        {
-            animator.SetBool("Running", false);
-        }
 
         moveDirection = (orientation.forward * verticalMovement) + (orientation.right * horizontalMovement);
     }
@@ -143,13 +148,22 @@ public class PlayerMovement : MonoBehaviour
 
     void ControlSpeed()
     {
-        if (Input.GetKey(sprintKey) && isGrounded)
+        if (!isCrouching && Input.GetKey(sprintKey) && isGrounded)
         {
             speed = Mathf.Lerp(speed, sprintSpeed, acceleration * Time.deltaTime);
+            GameManager.Instance.cameraLines.Play();
         }
         else
         {
-            speed = Mathf.Lerp(speed, walkSpeed, acceleration * Time.deltaTime);
+            if(!isCrouching)
+            {
+                speed = Mathf.Lerp(speed, walkSpeed, acceleration * Time.deltaTime);
+            }
+            else
+            {
+                speed = Mathf.Lerp(speed, crouchingMoveSpeed, acceleration * Time.deltaTime);
+            }
+            GameManager.Instance.cameraLines.Stop();
         }
     }
 
@@ -196,13 +210,41 @@ public class PlayerMovement : MonoBehaviour
     {
         currentSpeed = ((float)rb.velocity.magnitude);
         // Round to nearest tenth decimal
-        var newValue = System.Math.Round(currentSpeed,1);
+        var newValue = System.Math.Round(currentSpeed, 1);
 
-        speedText.text = newValue.ToString();
+        if(speedText)
+        {
+            speedText.text = newValue.ToString();
+        }
+        
     }
 
     void ChangeYVelocity(float multiplier)
     {
         rb.velocity += ((multiplier - 1) * Physics.gravity.y * Vector3.up * Time.deltaTime);
+    }
+
+    void HandleCrouch()
+    {
+        StartCoroutine(Crouch());
+    }
+
+    private IEnumerator Crouch()
+    {
+        float timeElapsed = 0f;
+        float targetHeight = isCrouching ? standingHeight : crouchingHeight;
+        float currentHeight = _capsuleCollider.height;
+
+        while (timeElapsed < timeToCrouch)
+        {
+            _capsuleCollider.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        _capsuleCollider.height = targetHeight;
+
+        isCrouching = !isCrouching;
     }
 }

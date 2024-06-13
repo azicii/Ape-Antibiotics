@@ -76,7 +76,13 @@ public class PlayerShield : MonoBehaviour, IDamageable
         if (currentShieldHealth <= 0f) 
         {
             currentShieldHealth = 0f;
+            
+            // Debugging 
+            Debug.Log("Shield Health - " + currentShieldHealth.ToString());
+            
             isCracked = true;
+            
+            ScoreManager.Instance.LoseCoins();
         }
         else
         {
@@ -115,4 +121,18 @@ public class PlayerShield : MonoBehaviour, IDamageable
             TakeDamage(10f);
         }
     }
+
+    public float GetShieldHealth()
+    {
+        //Debug.Log("Get Shield Health - " + currentShieldHealth.ToString());
+        return currentShieldHealth;
+    }
+
+    public void SetShieldHealth(float shieldHealth)
+    {
+        currentShieldHealth = shieldHealth;
+
+        //Debug.Log("Set Shield Health - "+shieldHealth.ToString());
+    }
+    
 }
