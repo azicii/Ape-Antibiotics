@@ -10,7 +10,10 @@ public class SettingsManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (transform.parent == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     } 
 
     public void SetMusicVolume(float volume)

@@ -20,6 +20,9 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject hudManager;
     [SerializeField] private GameObject win;
     [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject pause;
+
 
     //============================= UI Manager ====================================
     // Start is called before the first frame update
@@ -36,6 +39,8 @@ public class HUDManager : MonoBehaviour
         hudManager.SetActive(true);
         win.SetActive(false);
         gameOver.SetActive(false);
+        settings.SetActive(false);
+        pause.SetActive(false);
     }
 
     public void ShowWin()
@@ -43,6 +48,8 @@ public class HUDManager : MonoBehaviour
         hudManager.SetActive(true);
         win.SetActive(true);
         gameOver.SetActive(false);
+        settings.SetActive(false);
+        pause.SetActive(false);
     }
 
     public void ShowGameOver()
@@ -50,6 +57,26 @@ public class HUDManager : MonoBehaviour
         hudManager.SetActive(true);
         win.SetActive(false);
         gameOver.SetActive(true);
+        settings.SetActive(false);
+        pause.SetActive(false);
+    }
+
+    public void ShowPause()
+    {
+        hudManager.SetActive(true);
+        win.SetActive(false);
+        gameOver.SetActive(true);
+        settings.SetActive(false);
+        pause.SetActive(true);
+    }
+
+    public void ShowSettings()
+    {
+        hudManager.SetActive(true);
+        win.SetActive(false);
+        gameOver.SetActive(false);
+        settings.SetActive(true);
+        pause.SetActive(false);
     }
 
     public void ExitGame()
