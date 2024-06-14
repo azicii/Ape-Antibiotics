@@ -60,6 +60,9 @@ public class PauseMenu : MonoBehaviour
         if(_SmUi.activeSelf == true)
         {
             settingsActive = true;
+        } else
+        {
+            settingsActive = false;
         }
     }
 }
