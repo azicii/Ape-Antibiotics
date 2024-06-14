@@ -3398,9 +3398,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1705338673375576279}
-        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
-        m_MethodName: ShowSettings
+      - m_Target: {fileID: 1705338673375576272}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Settings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6815,7 +6815,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62812a4524cbd51478765ea370fddca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1705338671553695308}
+  pauseMenuUICanvas: {fileID: 1705338671553695308}
+  _PmUi: {fileID: 1705338671843164461}
+  _SmUi: {fileID: 4735419005803441584}
 --- !u!1 &1705338673385519751
 GameObject:
   m_ObjectHideFlags: 0
