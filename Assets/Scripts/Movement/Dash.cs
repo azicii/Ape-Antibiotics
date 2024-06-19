@@ -17,8 +17,18 @@ public class Dash : MonoBehaviour
     bool dashRequest;
 
     [Header("Cooldown")]
-    public float dashCd;
-    private float dashCdTimer;
+    [Tooltip("The cooldown time of this ability.")]
+    public float DashCd;
+
+    [SerializeField] [Tooltip("DEBUG - TIME LEFT")]
+    private float dashCdTimerLeft;
+
+    [Tooltip("Reference to the CooldownManager.")]
+    public CooldownManager cooldownManager; // Reference to the CooldownManager
+    
+    [Tooltip("Index of the cooldown icon in CooldownManager.")]
+    public int cooldownIconIndex = 1; // Index of the cooldown icon in CooldownManager
+
 
     [Header("Input")]
     public KeyCode dashKey = KeyCode.E;
@@ -36,9 +46,9 @@ public class Dash : MonoBehaviour
             dashRequest = true;
         }
 
-        if (dashCdTimer > 0)
+        if (dashCdTimerLeft > 0)
         {
-            dashCdTimer -= Time.deltaTime;
+            dashCdTimerLeft -= Time.deltaTime;
         }
     }
 
@@ -54,13 +64,17 @@ public class Dash : MonoBehaviour
 
     private void Dashing()
     {
-        if (dashCdTimer > 0)
+        if (dashCdTimerLeft > 0)
         {
             return;
         }
         else
         {
-            dashCdTimer = dashCd;
+            dashCdTimerLeft = DashCd;
+            if (cooldownManager != null)
+            {
+                cooldownManager.TriggerCooldown(cooldownIconIndex,DashCd); // Start the cooldown animation
+            }
         }
 
         Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;

@@ -29,14 +29,20 @@ public class Grappling : MonoBehaviour
     [SerializeField] float jointMassScaleValue = 4.5f;
 
 
-    // [Header("Cooldown")]
-    // [Tooltip("The cooldown of the attack.")]
-    // [SerializeField] float grapplingCd = 1f;
-    // // private WaitForSeconds grapplingCdTimer;
+    [Header("Cooldown")]
+    [Tooltip("The cooldown time of this ability.")]
+    public float GrapplingCd;
+    
+    [SerializeField] [Tooltip("DEBUG - TIME LEFT")]
+    private float grapplingCdTimeLeft;
 
-    public float grapplingCdTimer;
+    [Tooltip("Reference to the CooldownManager.")]
+    public CooldownManager cooldownManager; // Reference to the CooldownManager
+    
+    [Tooltip("Index of the cooldown icon in CooldownManager.")]
+    public int cooldownIconIndex = 0; // Index of the cooldown icon in CooldownManager
 
-    public float grapplingCdTimeLeft;
+
 
     [Header("Input")]
     public KeyCode grappleKey = KeyCode.R;
@@ -45,6 +51,8 @@ public class Grappling : MonoBehaviour
     private bool canGrapple = true;
 
     private RaycastHit savedHit;
+    private Vector4 hitPointOffset;
+    private GameObject grappleHitPoint;
 
     void Start()
     {
@@ -52,7 +60,7 @@ public class Grappling : MonoBehaviour
         dj = GetComponent<DoubleJump>();
         rb = GetComponent<Rigidbody>();
         grappleGun.SetActive(false);
-
+        grappleHitPoint = new GameObject();
         // grapplingCdTimer = new WaitForSeconds(grapplingCd);
     }
 
@@ -72,7 +80,7 @@ public class Grappling : MonoBehaviour
     {
         if (grappling)
         {
-            setGrappleRope(savedHit);
+            setGrappleRope();
         }
     }
 
@@ -86,8 +94,13 @@ public class Grappling : MonoBehaviour
         if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, maxGrappleDistance, whatIsGrappable))
         {
             Debug.Log($"We hit {hit.transform.name}");
-            savedHit = hit;
-            ExecuteGrapplePhysics(savedHit);
+
+            grappleHitPoint.transform.parent = hit.transform;
+            grappleHitPoint.transform.position = hit.point;
+
+            gameObject.transform.parent = hit.transform;
+            
+            ExecuteGrapplePhysics();
         }
         else
         {
@@ -101,7 +114,7 @@ public class Grappling : MonoBehaviour
 
     private IEnumerator GrappleCooldown()
     {
-
+        cooldownManager.TriggerCooldown(cooldownIconIndex,GrapplingCd);
         while (grapplingCdTimeLeft > 0) // Perform the cooldown
         {
             grapplingCdTimeLeft -= Time.deltaTime;
@@ -111,10 +124,10 @@ public class Grappling : MonoBehaviour
     }
 
     // change to fixed update
-    private void ExecuteGrapplePhysics(RaycastHit hit)
+    private void ExecuteGrapplePhysics()
     {
 
-        Vector3 grapplePoint = hit.point;
+        Vector3 grapplePoint = grappleHitPoint.transform.position;
 
         joint = pm.gameObject.AddComponent<SpringJoint>();
         joint.autoConfigureConnectedAnchor = false;
@@ -145,16 +158,18 @@ public class Grappling : MonoBehaviour
 
         canGrapple = false;
 
-        grapplingCdTimeLeft = grapplingCdTimer;
-
+        grapplingCdTimeLeft = GrapplingCd;
+        grappleHitPoint.transform.parent = null;
+        gameObject.transform.parent = null;
         StartCoroutine(GrappleCooldown());
     }
 
-    private void setGrappleRope(RaycastHit hit)
+    private void setGrappleRope()
     {
         Vector3[] positions = new Vector3[2];
         positions[0] = shootPoint.position;
-        positions[1] = hit.point;
+        positions[1] = grappleHitPoint.transform.position;
+
         lr.SetPositions(positions);
     }
 }
