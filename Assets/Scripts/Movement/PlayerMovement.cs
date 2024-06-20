@@ -6,6 +6,11 @@ public class PlayerMovement : MonoBehaviour
 {
     float playerHeight = 2f;
 
+    [Header("Player Audio")]
+    public AudioSource _PlayerAudioSource;
+    public AudioClip playerWalk;
+    public AudioClip playerRun;
+
     [SerializeField] Transform orientation;
 
     [Header("Movement")]
@@ -57,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         wr = GetComponent<WallRun>();
         animator = GetComponentInChildren<Animator>();
+        _PlayerAudioSource = GetComponent<AudioSource>();
+        _PlayerAudioSource.enabled = true;
     }
 
     private void Update()
@@ -107,10 +114,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         moveDirection = (orientation.forward * verticalMovement) + (orientation.right * horizontalMovement);
+
+        if(horizontalMovement == 0f && verticalMovement == 0f)
+        {
+            _PlayerAudioSource.clip = null;
+            _PlayerAudioSource.Stop();
+        }
     }
 
     void MovePlayer()
     {
+
         if (isGrounded && !OnSlope())
         {
             rb.AddForce(moveDirection.normalized * speed, ForceMode.Acceleration);
@@ -146,10 +160,24 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(sprintKey) && isGrounded)
         {
             speed = Mathf.Lerp(speed, sprintSpeed, acceleration * Time.deltaTime);
+            if (_PlayerAudioSource.clip != playerRun || !isGrounded)
+            {
+                _PlayerAudioSource.Stop();
+            }
+            _PlayerAudioSource.clip = playerRun;
+            if(!_PlayerAudioSource.isPlaying)
+                _PlayerAudioSource.Play();
         }
         else
         {
             speed = Mathf.Lerp(speed, walkSpeed, acceleration * Time.deltaTime);
+            if(_PlayerAudioSource.clip != playerWalk || !isGrounded)
+            {
+                _PlayerAudioSource.Stop();
+            }
+            _PlayerAudioSource.clip = playerWalk;
+            if (!_PlayerAudioSource.isPlaying)
+                _PlayerAudioSource.Play();
         }
     }
 

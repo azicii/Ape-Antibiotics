@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Grappling : MonoBehaviour
 {
+    [Header("Grapple Sounds")]
+    public AudioSource _GrappleAudioSource;
+
     [Header("References")]
     private PlayerMovement pm;
     private DoubleJump dj;
@@ -47,6 +50,8 @@ public class Grappling : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         dj = GetComponent<DoubleJump>();
         rb = GetComponent<Rigidbody>();
+        _GrappleAudioSource = GetComponent<AudioSource>();
+        _GrappleAudioSource.enabled = false;
         grappleGun.SetActive(false);
 
         //grapplingCdTimer = new WaitForSeconds(grapplingCd);
@@ -57,6 +62,8 @@ public class Grappling : MonoBehaviour
         if (Input.GetKeyDown(grappleKey) && canGrapple)
         {
             StartGrapple();
+            if(!_GrappleAudioSource.isPlaying)
+                _GrappleAudioSource.Play();
         }
         if (Input.GetKeyUp(grappleKey))
         {
