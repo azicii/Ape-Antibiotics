@@ -33,7 +33,11 @@ public class Punch : MonoBehaviour
     [Tooltip("The amount of knockback applied to the enemy.")]
     [SerializeField] float attackKnockbackForceMultiplier;
 
-    //----------
+    // Sounds
+    [Header("Punch Sounds")]
+    [SerializeField] AudioSource punchSoundSource;
+    [SerializeField] AudioClip punch1;
+    [SerializeField] AudioClip punch2;
 
     // References
     private Animator anim;
@@ -118,6 +122,8 @@ public class Punch : MonoBehaviour
         anim.SetBool("Charging", false);
         anim.SetTrigger("Punching");
 
+        int ranInt = Random.Range(0, 10);
+
         // Reset isCharging
         isChargingUp = false;
 
@@ -134,6 +140,21 @@ public class Punch : MonoBehaviour
         {
             // pretty inefficient because we're using
             // getcomponent twice but idk how to really optimize this
+
+            switch(ranInt > 5 ? "High" :
+                   ranInt < 5 ? "Low" : "Floor")
+            {
+                case "High":
+                    punchSoundSource.clip = punch1;
+                    punchSoundSource.Play();
+                    break;
+                case "Low":
+                    punchSoundSource.clip = punch2;
+                    punchSoundSource.Play();
+                    break;
+                case "Floor":
+                    break;
+            }
 
             // Refactored to use TryGetComponent instead, Could further refactor with an interface or abstract class [Tegomlee]
             Debug.Log($"{this.name} has punched {enemy.name}");
